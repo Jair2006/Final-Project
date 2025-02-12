@@ -1,8 +1,8 @@
-import {Sequilize} from 'sequelize';
+import {Sequelize} from 'sequelize';
 
-host = 'localhost';
+const host = 'localhost';
 
-const sequilize = new Sequilize(
+const sequilize = new Sequelize(
     'el_sabor_ambateno',
     'postgres',
     '',

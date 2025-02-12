@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+import sequelize from "../../config/database.js";
 
 const modelName = "User";
 
@@ -12,7 +13,7 @@ const User = sequelize.define(modelName, {
     allowNull: false,
   },
   email: {
-    type: DataTypes,
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true,
     validate: {
@@ -39,7 +40,7 @@ await User.sync({
   .then(() => {
     console.log(`Modelo ${modelName} creado con éxito`);
   })
-  .chatch((err) => {
+  .catch((err) => {
     console.log(`Error al crear el modelo ${modelName}:\n ${err.message}`);
   });
 
