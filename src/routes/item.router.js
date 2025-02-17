@@ -1,5 +1,6 @@
 import { getItemById, getItems, getItemsBySearch, createItem,updateItem,deleteItem } from "../controllers/item.controller.js";
 import express from "express";
+import { isAdmin } from "../middlewares/auth.js";
 
 const itemRouter = express.Router();
 
@@ -34,7 +35,7 @@ itemRouter.get('/', (req, res) => {
     });
 });
 
-itemRouter.post('/',(req, res) => {
+itemRouter.post('/', isAdmin,(req, res) => {
     createItem(req.body).then((data) => {
         res.status(201).json(data);
     }).catch((err) => {
@@ -44,7 +45,7 @@ itemRouter.post('/',(req, res) => {
 });
 
 
-itemRouter.put('/:id',(req, res) => {
+itemRouter.put('/:id',isAdmin ,(req, res) => {
     updateItem(req.params.id, req.body).then((data) => {
         if (data) {
             res.status(201).json({message: "Item updated.", data: data});
@@ -57,7 +58,7 @@ itemRouter.put('/:id',(req, res) => {
     });
 });
 
-itemRouter.delete("/:id",(req, res) => {
+itemRouter.delete("/:id",isAdmin ,(req, res) => {
     deleteItem(req.params.id).then((data) => {
         if (data) {
             res.status(200).json({message: "Item deleted.", data: data});
@@ -72,3 +73,4 @@ itemRouter.delete("/:id",(req, res) => {
 
 
 export default itemRouter;
+
