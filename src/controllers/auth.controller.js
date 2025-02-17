@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = "clave_secreta";
+const SECRET_KEY = "secret_key";
 
 export const register = async (body) => {
   const saltRounds = 10;
@@ -10,6 +10,7 @@ export const register = async (body) => {
 
   let payload = {
     name: body.name,
+    lastname: body.lastname,
     email: body.email,
     password: hashedPassword,
     role: body.role,

@@ -7,6 +7,7 @@ import{
     updateUser,
     deleteUser
 } from "../controllers/user.controller.js";
+import { isAdmin } from "../middlewares/auth.js";
 
 const userRouter = express.Router();
 
@@ -21,7 +22,7 @@ userRouter.post("/", (req, res) => {
       });
   });
   
-  userRouter.get("/", (req, res) => {
+  userRouter.get("/",isAdmin, (req, res) => {
     getUsers()
       .then((data) => {
         res.status(200).json(data);
@@ -33,7 +34,7 @@ userRouter.post("/", (req, res) => {
   });
   
   
-  userRouter.get("/search", (req, res) => {
+  userRouter.get("/search",isAdmin, (req, res) => {
       getUserBySearch(req.query)
         .then((data) => {
           if (data.length) {
@@ -48,7 +49,7 @@ userRouter.post("/", (req, res) => {
         });
   });
   
-  userRouter.get("/:id", (req, res) => {
+  userRouter.get("/:id",isAdmin, (req, res) => {
     getUserById(req.params.id)
       .then((data) => {
         if (data) {
@@ -65,7 +66,7 @@ userRouter.post("/", (req, res) => {
   
   
   
-  userRouter.put("/:id", (req, res) => {
+  userRouter.put("/:id",isAdmin, (req, res) => {
     updateUser(req.params.id, req.body)
       .then((data) => {
         if (data) {
@@ -82,7 +83,7 @@ userRouter.post("/", (req, res) => {
       });
   });
   
-  userRouter.patch("/:id", (req, res) => {
+  userRouter.patch("/:id",isAdmin, (req, res) => {
     updateUser(req.params.id, req.body)
       .then((data) => {
         if (data) {
@@ -99,7 +100,7 @@ userRouter.post("/", (req, res) => {
       });
   });
   
-  userRouter.delete("/:id", (req, res) => {
+  userRouter.delete("/:id",isAdmin, (req, res) => {
     deleteUser(req.params.id)
       .then((data) => {
         if (data) {
