@@ -1,26 +1,17 @@
-import { getItemByI, getItems, getItemsBySearch, createItem,updateItem,deleteItem } from "../controllers/item.controller";
+import { getItemById, getItems, getItemsBySearch, createItem,updateItem,deleteItem } from "../controllers/item.controller.js";
 import express from "express";
 
-const ItemRouter = express.Router();
+const itemRouter = express.Router();
 
 itemRouter.get('/search', (req, res) => {
     getItemsBySearch(req.query).then((data) => {
         if (data.length) {
             res.status(200).json(data);
         }else {
-            res.status(404).json({message: "Item nor found."});
+            res.status(404).json({message: "Item not found."});
         }
     }).catch((err) => {
         console.error("Error on GET /search route:", err);
-        res.status(500).json({message: err});
-    });
-});
-
-itemRouter.get('/:id', (req, res) => {
-    getItemById(req.params.id).then((data) => {
-        res.status(200).json(data);
-    }).catch((err) => {
-        console.error("Error on GET /:id route:", err);
         res.status(500).json({message: err});
     });
 });
@@ -43,7 +34,7 @@ itemRouter.get('/', (req, res) => {
     });
 });
 
-itemRouter.post('/', isEmployee,(req, res) => {
+itemRouter.post('/',(req, res) => {
     createItem(req.body).then((data) => {
         res.status(201).json(data);
     }).catch((err) => {
@@ -53,7 +44,7 @@ itemRouter.post('/', isEmployee,(req, res) => {
 });
 
 
-itemRouter.put('/:id', isEmployee,(req, res) => {
+itemRouter.put('/:id',(req, res) => {
     updateItem(req.params.id, req.body).then((data) => {
         if (data) {
             res.status(201).json({message: "Item updated.", data: data});
@@ -66,7 +57,7 @@ itemRouter.put('/:id', isEmployee,(req, res) => {
     });
 });
 
-itemRouter.delete("/:id", isAdmin,(req, res) => {
+itemRouter.delete("/:id",(req, res) => {
     deleteItem(req.params.id).then((data) => {
         if (data) {
             res.status(200).json({message: "Item deleted.", data: data});

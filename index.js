@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use("/users", userRouter);
-app.use("items", itemRouter);
+app.use("/items", itemRouter);
 
 app.listen(port, () => {
   console.log(`servidor corriendo en http://localhost:${port}`);

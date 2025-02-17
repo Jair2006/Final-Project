@@ -1,15 +1,15 @@
-import sequilize from "../../config/database";
-import { DataTypes, STRING } from "sequelize";
+import sequilize from "../../config/database.js";
+import { DataTypes } from "sequelize";
 
 const modelName = "Item";
 
-const Item = Sequelize.define(modelName, {
+const Item = sequilize.define(modelName, {
     name: {
-        type: DataTypes-STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     Descripcion: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
     },
     price: {
         type: DataTypes.FLOAT,
@@ -25,7 +25,7 @@ await Item.sync({
 }).then(() => {
     console.log(`Modelo Item ha sido creado correctamente.`);
 }).catch((err) => {
-    console.error(`Error en la creacion del modelo Item ${modelName}:\n`, err);
+    console.error(`Error en la creacion del modelo ${modelName}:\n`, err);
 }); 
 
-export default Item 
+export default Item;
