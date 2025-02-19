@@ -13,7 +13,7 @@ const Item = sequilize.define(modelName, {
     },
     price: {
         type: DataTypes.FLOAT,
-        allowNull: false
+        allowNull: false,
     }
 });
 
