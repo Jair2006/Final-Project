@@ -1,9 +1,11 @@
-import sequilize from "../../config/database.js";
-import { DataTypes } from "sequelize";
+import Sequilize from "../../config/database.js";
+import { DataTypes} from "sequelize";
 
 const modelName = "Item";
 
-const Item = sequilize.define(modelName, {
+
+
+const Item = Sequilize.define(modelName, {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
