@@ -75,59 +75,59 @@ const Item = Sequilize.define(modelName, {
     },
     SEOTitle: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     SEODescrption: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     permalink: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     GTIN: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     socialMediaLinkTitle: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     socialMediaLinkDescrption: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     sellable: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     stockable: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     optionNAme1: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     optionValue1: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     CurrentQuantityElSaborAmbatenoIVUC: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     NewQuantytyElSaborAmbatenoIVUC: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     StocklAlertEnabledElSaborAmbatenoIVUS: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     StockAlertCountElSaborAmbatenoIVUC: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     }
 });
 
