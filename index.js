@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import userRouter from "./src/routes/user.router.js";
 import authRouter from "./src/routes/auth.router.js";
 import itemRouter from "./src/routes/item.router.js";
+import branchRouter from "./src/routes/branch.router.js";
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/items", itemRouter);
 app.use("/auth", authRouter);
+app.use("/branch", branchRouter);
 
 app.listen(port, () => {
   console.log(`servidor corriendo en http://localhost:${port}`);
