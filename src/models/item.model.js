@@ -12,9 +12,14 @@ const Item = Sequilize.define(modelName, {
     },
     Description: {
         type: DataTypes.TEXT,
+        allowNull: false,
     },
     price: {
         type: DataTypes.FLOAT,
+        allowNull: false,
+    },
+    imageUrl: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     token: {
