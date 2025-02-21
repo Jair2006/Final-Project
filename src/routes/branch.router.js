@@ -1,18 +1,18 @@
 import express from "express";
-import {
-  createUser,
-  getUserById,
-  getUserBySearch,
-  getUsers,
-  updateUser,
-  deleteUser,
-} from "../controllers/user.controller.js";
 import { isAdmin } from "../middlewares/auth.js";
+import {
+  createBranch,
+  deleteBranch,
+  getBranchById,
+  getBranchBySearch,
+  getBranchs,
+  updateBranch,
+} from "../controllers/branch.controller.js";
 
-const userRouter = express.Router();
+const branchRouter = express.Router();
 
-userRouter.post("/", (req, res) => {
-  createUser(req.body)
+branchRouter.post("/", (req, res) => {
+  createBranch(req.body)
     .then((data) => {
       res.status(201).json(data);
     })
@@ -22,8 +22,8 @@ userRouter.post("/", (req, res) => {
     });
 });
 
-userRouter.get("/", isAdmin, (req, res) => {
-  getUsers()
+branchRouter.get("/", isAdmin, (req, res) => {
+  getBranchs()
     .then((data) => {
       res.status(200).json(data);
     })
@@ -33,8 +33,8 @@ userRouter.get("/", isAdmin, (req, res) => {
     });
 });
 
-userRouter.get("/search", isAdmin, (req, res) => {
-  getUserBySearch(req.query)
+branchRouter.get("/search", isAdmin, (req, res) => {
+  getBranchBySearch(req.query)
     .then((data) => {
       if (data.length) {
         res.status(200).json(data);
@@ -48,8 +48,8 @@ userRouter.get("/search", isAdmin, (req, res) => {
     });
 });
 
-userRouter.get("/:id", isAdmin, (req, res) => {
-  getUserById(req.params.id)
+branchRouter.get("/:id", isAdmin, (req, res) => {
+  getBranchById(req.params.id)
     .then((data) => {
       if (data) {
         res.status(200).json(data);
@@ -63,8 +63,8 @@ userRouter.get("/:id", isAdmin, (req, res) => {
     });
 });
 
-userRouter.put("/:id", isAdmin, (req, res) => {
-  updateUser(req.params.id, req.body)
+branchRouter.put("/:id", isAdmin, (req, res) => {
+  updateBranch(req.params.id, req.body)
     .then((data) => {
       if (data) {
         res
@@ -80,8 +80,8 @@ userRouter.put("/:id", isAdmin, (req, res) => {
     });
 });
 
-userRouter.patch("/:id", isAdmin, (req, res) => {
-  updateUser(req.params.id, req.body)
+branchRouter.patch("/:id", isAdmin, (req, res) => {
+  updateBranch(req.params.id, req.body)
     .then((data) => {
       if (data) {
         res
@@ -97,8 +97,8 @@ userRouter.patch("/:id", isAdmin, (req, res) => {
     });
 });
 
-userRouter.delete("/:id", isAdmin, (req, res) => {
-  deleteUser(req.params.id)
+branchRouter.delete("/:id", isAdmin, (req, res) => {
+  deleteBranch(req.params.id)
     .then((data) => {
       if (data) {
         res
@@ -114,4 +114,4 @@ userRouter.delete("/:id", isAdmin, (req, res) => {
     });
 });
 
-export default userRouter;
+export default branchRouter;

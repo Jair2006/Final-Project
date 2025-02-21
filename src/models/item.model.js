@@ -3,8 +3,6 @@ import { DataTypes} from "sequelize";
 
 const modelName = "Item";
 
-
-
 const Item = Sequilize.define(modelName, {
     name: {
         type: DataTypes.STRING,
