@@ -6,11 +6,8 @@ const modelName = "Item";
 
 
 const Item = Sequilize.define(modelName, {
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    Description: {
+    
+    description: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -18,7 +15,7 @@ const Item = Sequilize.define(modelName, {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    imageUrl: {
+    image_Url: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -26,23 +23,23 @@ const Item = Sequilize.define(modelName, {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    itemName: {
+    item_name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    variationName: {
+    variation_name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    reportingCategory: {
+    reporting_category: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    SquareOnlineItemVisibility: {
+    square_online_item_visibility: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    itemType: {
+    item_type: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -50,23 +47,23 @@ const Item = Sequilize.define(modelName, {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    shippingEnabled: {
+    shipping_enabled: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    selfServerOrderingEnabled: {
+    self_server_ordering_enabled: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    deliveryEnabled: {
+    delivery_enabled: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    pickupEnabled: {
+    pickup_enabled: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    onlineSalePrice: {
+    online_sale_price: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -74,15 +71,15 @@ const Item = Sequilize.define(modelName, {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    skipDetailInPOS: {
+    skip_detail_in_pos: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    SEOTitle: {
+    seo_title: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    SEODescrption: {
+    seo_descrption: {
         type: DataTypes.STRING,
         allowNull: true,
     },
@@ -90,15 +87,15 @@ const Item = Sequilize.define(modelName, {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    GTIN: {
+    gtin: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    socialMediaLinkTitle: {
+    social_media_link_title: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    socialMediaLinkDescrption: {
+    social_media_link_descrption: {
         type: DataTypes.STRING,
         allowNull: true,
     },
@@ -110,27 +107,11 @@ const Item = Sequilize.define(modelName, {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    optionNAme1: {
+    option_name_1: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    optionValue1: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    CurrentQuantityElSaborAmbatenoIVUC: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    NewQuantytyElSaborAmbatenoIVUC: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    StocklAlertEnabledElSaborAmbatenoIVUS: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    StockAlertCountElSaborAmbatenoIVUC: {
+    option_value_1: {
         type: DataTypes.STRING,
         allowNull: true,
     }
