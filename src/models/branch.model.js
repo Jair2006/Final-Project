@@ -25,7 +25,7 @@ const Branch = sequilize.define(modelName, {
     allowNull: false,
   },
   stock_alert_count: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 });

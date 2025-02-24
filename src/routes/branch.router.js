@@ -5,8 +5,8 @@ import {
   deleteBranch,
   getBranchById,
   getBranchBySearch,
-  getBranchs,
-  updateBranch,
+  getBranches,
+  updateBranch
 } from "../controllers/branch.controller.js";
 
 const branchRouter = express.Router();
@@ -23,7 +23,7 @@ branchRouter.post("/", (req, res) => {
 });
 
 branchRouter.get("/", isAdmin, (req, res) => {
-  getBranchs()
+  getBranches()
     .then((data) => {
       res.status(200).json(data);
     })
