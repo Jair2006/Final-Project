@@ -55,10 +55,10 @@ Item.belongsToMany(Branch, {
 });
 
 await BranchItem.sync({
-  force: true,
-//  alter: {
-//  drop: false,
-//  },
+  force: false,
+  alter: {
+    drop: false,
+  },
 })
   .then(() => {
     console.log(`Modelo ${modelName} creado con éxito`);

@@ -1,5 +1,6 @@
 import Branch from "../models/branch.model.js";
 import Item from "../models/item.model.js";
+import BranchItem from "../models/branch_item.model.js";
 
 export const getBranches = async () => {
   let data = await Branch.findAll({include: Item});
@@ -12,7 +13,7 @@ export const getBranchById = async (id) => {
 };
 
 export const getBranchBySearch = async () => {
-  let data = await Branch.findAll();
+  let data = await Branch.findAll({include: Item});
   return data;
 };
 
