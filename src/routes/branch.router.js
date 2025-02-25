@@ -1,15 +1,18 @@
 import express from "express";
 import { isAdmin } from "../middlewares/auth.js";
 import {
+  addContact,
   addItem,
   createBranch,
   deleteBranch,
+  deleteContact,
   deleteItem,
   getBranchById,
   getBranchBySearch,
   getBranches,
   updateBranch,
-  updateItem
+  updateContact,
+  updateItem,
 } from "../controllers/branch.controller.js";
 
 const branchRouter = express.Router();
@@ -25,19 +28,30 @@ branchRouter.post("/", (req, res) => {
     });
 });
 
-branchRouter.post("/addItem/:id", (req, res) => {
-  addItem(req.params.id,req.body.ItemId,req.body)
+branchRouter.post("/:id/item/:itemId", (req, res) => {
+  addItem(req.params.id, req.params.itemId, req.body)
     .then((data) => {
       res.status(201).json(data);
     })
     .catch((err) => {
-      console.error("Error on POST / route:", err);
+      console.error("Error on POST /:id/item/:itemId route:", err);
       res.status(500).json({ message: err });
     });
 });
 
-branchRouter.put("/updateItem/:id", isAdmin, (req, res) => {
-  updateItem(req.params.id,req.body.ItemId,req.body)
+branchRouter.post("/:id/contact", (req, res) => {
+  addContact(req.params.id, req.body)
+    .then((data) => {
+      res.status(201).json(data);
+    })
+    .catch((err) => {
+      console.error("Error on POST /:id/contact route:", err);
+      res.status(500).json({ message: err });
+    });
+});
+
+branchRouter.put("/:id/item/:itemId", isAdmin, (req, res) => {
+  updateItem(req.params.id, req.params.itemId, req.body)
     .then((data) => {
       if (data) {
         res
@@ -48,13 +62,30 @@ branchRouter.put("/updateItem/:id", isAdmin, (req, res) => {
       }
     })
     .catch((err) => {
-      console.error("Error on PUT /:id route:", err);
+      console.error("Error on PUT /:id/item/:itemId route:", err);
       res.status(500).json({ message: err });
     });
 });
 
-branchRouter.delete("/deleteItem/:id", isAdmin, (req, res) => {
-  deleteItem(req.params.id,req.body.ItemId)
+branchRouter.put("/:id/contact/:contactId", (req, res) => {
+  updateContact(req.params.id, req.params.contactId, req.body)
+    .then((data) => {
+      if (data) {
+        res
+          .status(200)
+          .json({ message: "Contact updated successfully", data: data });
+      } else {
+        res.status(404).json({ message: "Contact not update", data: data });
+      }
+    })
+    .catch((err) => {
+      console.error("Error on PUT /:id/contact/:contactId route:", err);
+      res.status(500).json({ message: err });
+    });
+});
+
+branchRouter.delete("/:id/item/:itemId", isAdmin, (req, res) => {
+  deleteItem(req.params.id, req.params.itemId)
     .then((data) => {
       if (data) {
         res
@@ -65,12 +96,29 @@ branchRouter.delete("/deleteItem/:id", isAdmin, (req, res) => {
       }
     })
     .catch((err) => {
-      console.error("Error on DELETE /:id route:", err);
+      console.error("Error on DELETE /:id/item/:itemId route:", err);
       res.status(500).json({ message: err });
     });
 });
 
-branchRouter.get("/", isAdmin, (req, res) => {
+branchRouter.delete("/:id/contact/:contactId", (req, res) => {
+  deleteContact(req.params.id, req.params.contactId)
+    .then((data) => {
+      if (data) {
+        res
+          .status(200)
+          .json({ message: "Contact deleted successfully", data: data });
+      } else {
+        res.status(404).json({ message: "Contact not found", data: data });
+      }
+    })
+    .catch((err) => {
+      console.error("Error on DELETE /:id/contact/:contactId route:", err);
+      res.status(500).json({ message: err });
+    });
+});
+
+branchRouter.get("/", (req, res) => {
   getBranches()
     .then((data) => {
       res.status(200).json(data);
@@ -81,7 +129,7 @@ branchRouter.get("/", isAdmin, (req, res) => {
     });
 });
 
-branchRouter.get("/search", isAdmin, (req, res) => {
+branchRouter.get("/search", (req, res) => {
   getBranchBySearch(req.query)
     .then((data) => {
       if (data.length) {
@@ -96,7 +144,7 @@ branchRouter.get("/search", isAdmin, (req, res) => {
     });
 });
 
-branchRouter.get("/:id", isAdmin, (req, res) => {
+branchRouter.get("/:id", (req, res) => {
   getBranchById(req.params.id)
     .then((data) => {
       if (data) {
@@ -124,23 +172,6 @@ branchRouter.put("/:id", isAdmin, (req, res) => {
     })
     .catch((err) => {
       console.error("Error on PUT /:id route:", err);
-      res.status(500).json({ message: err });
-    });
-});
-
-branchRouter.patch("/:id", isAdmin, (req, res) => {
-  updateBranch(req.params.id, req.body)
-    .then((data) => {
-      if (data) {
-        res
-          .status(200)
-          .json({ message: "Branch updated successfully", data: data });
-      } else {
-        res.status(404).json({ message: "Branch not update", data: data });
-      }
-    })
-    .catch((err) => {
-      console.error("Error on PAtch /:id route:", err);
       res.status(500).json({ message: err });
     });
 });
