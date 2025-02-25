@@ -1,10 +1,10 @@
 import express from "express";
 import { logIn, register } from "../controllers/auth.controller.js";
-
+import { isAdmin } from "../middlewares/auth.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/register", (req, res) => {
+authRouter.post("/register", isAdmin, (req, res) => {
   register(req.body)
     .then((data) => {
       res.status(200).json(data);

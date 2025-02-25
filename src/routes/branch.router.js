@@ -17,7 +17,7 @@ import {
 
 const branchRouter = express.Router();
 
-branchRouter.post("/", (req, res) => {
+branchRouter.post("/", isAdmin, (req, res) => {
   createBranch(req.body)
     .then((data) => {
       res.status(201).json(data);
@@ -28,7 +28,7 @@ branchRouter.post("/", (req, res) => {
     });
 });
 
-branchRouter.post("/:id/item/:itemId", (req, res) => {
+branchRouter.post("/:id/item/:itemId", isAdmin, (req, res) => {
   addItem(req.params.id, req.params.itemId, req.body)
     .then((data) => {
       res.status(201).json(data);
@@ -39,7 +39,7 @@ branchRouter.post("/:id/item/:itemId", (req, res) => {
     });
 });
 
-branchRouter.post("/:id/contact", (req, res) => {
+branchRouter.post("/:id/contact", isAdmin, (req, res) => {
   addContact(req.params.id, req.body)
     .then((data) => {
       res.status(201).json(data);
@@ -67,7 +67,7 @@ branchRouter.put("/:id/item/:itemId", isAdmin, (req, res) => {
     });
 });
 
-branchRouter.put("/:id/contact/:contactId", (req, res) => {
+branchRouter.put("/:id/contact/:contactId", isAdmin, (req, res) => {
   updateContact(req.params.id, req.params.contactId, req.body)
     .then((data) => {
       if (data) {
@@ -101,7 +101,7 @@ branchRouter.delete("/:id/item/:itemId", isAdmin, (req, res) => {
     });
 });
 
-branchRouter.delete("/:id/contact/:contactId", (req, res) => {
+branchRouter.delete("/:id/contact/:contactId", isAdmin, (req, res) => {
   deleteContact(req.params.id, req.params.contactId)
     .then((data) => {
       if (data) {

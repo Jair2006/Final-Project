@@ -11,7 +11,7 @@ import { isAdmin } from "../middlewares/auth.js";
 
 const userRouter = express.Router();
 
-userRouter.post("/", (req, res) => {
+userRouter.post("/", isAdmin, (req, res) => {
   createUser(req.body)
     .then((data) => {
       res.status(201).json(data);
@@ -76,23 +76,6 @@ userRouter.put("/:id", isAdmin, (req, res) => {
     })
     .catch((err) => {
       console.error("Error on PUT /:id route:", err);
-      res.status(500).json({ message: err });
-    });
-});
-
-userRouter.patch("/:id", isAdmin, (req, res) => {
-  updateUser(req.params.id, req.body)
-    .then((data) => {
-      if (data) {
-        res
-          .status(200)
-          .json({ message: "User updated successfully", data: data });
-      } else {
-        res.status(404).json({ message: "User not update", data: data });
-      }
-    })
-    .catch((err) => {
-      console.error("Error on PAtch /:id route:", err);
       res.status(500).json({ message: err });
     });
 });
