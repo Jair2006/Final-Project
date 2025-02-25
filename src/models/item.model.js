@@ -27,14 +27,14 @@ const Item = Sequilize.define(modelName, {
     },
     variation_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     reporting_category: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     square_online_item_visibility: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     item_type: {
@@ -42,35 +42,35 @@ const Item = Sequilize.define(modelName, {
         allowNull: false,
     },
     weight: {
-        type: DataTypes.STRING,
+        type: DataTypes.DECIMAL,
         allowNull: false,
     },
     shipping_enabled: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     self_server_ordering_enabled: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     delivery_enabled: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     pickup_enabled: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     online_sale_price: {
-        type: DataTypes.STRING,
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
     archived: {
-        type: DataTypes.TEXT,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     skip_detail_in_pos: {
-        type: DataTypes.TEXT,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     seo_title: {
@@ -98,12 +98,12 @@ const Item = Sequilize.define(modelName, {
         allowNull: true,
     },
     sellable: {
-        type: DataTypes.STRING,
-        allowNull: true,
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
     },
     stockable: {
-        type: DataTypes.STRING,
-        allowNull: true,
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
     },
     option_name_1: {
         type: DataTypes.STRING,

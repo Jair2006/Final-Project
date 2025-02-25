@@ -1,12 +1,15 @@
 import express from "express";
 import { isAdmin } from "../middlewares/auth.js";
 import {
+  addItem,
   createBranch,
   deleteBranch,
+  deleteItem,
   getBranchById,
   getBranchBySearch,
   getBranches,
-  updateBranch
+  updateBranch,
+  updateItem
 } from "../controllers/branch.controller.js";
 
 const branchRouter = express.Router();
@@ -18,6 +21,51 @@ branchRouter.post("/", (req, res) => {
     })
     .catch((err) => {
       console.error("Error on POST / route:", err);
+      res.status(500).json({ message: err });
+    });
+});
+
+branchRouter.post("/addItem/:id", (req, res) => {
+  addItem(req.params.id,req.body.ItemId,req.body)
+    .then((data) => {
+      res.status(201).json(data);
+    })
+    .catch((err) => {
+      console.error("Error on POST / route:", err);
+      res.status(500).json({ message: err });
+    });
+});
+
+branchRouter.put("/updateItem/:id", isAdmin, (req, res) => {
+  updateItem(req.params.id,req.body.ItemId,req.body)
+    .then((data) => {
+      if (data) {
+        res
+          .status(200)
+          .json({ message: "Branch-Item updated successfully", data: data });
+      } else {
+        res.status(404).json({ message: "Branch-Item not update", data: data });
+      }
+    })
+    .catch((err) => {
+      console.error("Error on PUT /:id route:", err);
+      res.status(500).json({ message: err });
+    });
+});
+
+branchRouter.delete("/deleteItem/:id", isAdmin, (req, res) => {
+  deleteItem(req.params.id,req.body.ItemId)
+    .then((data) => {
+      if (data) {
+        res
+          .status(200)
+          .json({ message: "Branch-Item deleted successfully", data: data });
+      } else {
+        res.status(404).json({ message: "Branch not found", data: data });
+      }
+    })
+    .catch((err) => {
+      console.error("Error on DELETE /:id route:", err);
       res.status(500).json({ message: err });
     });
 });
@@ -39,7 +87,7 @@ branchRouter.get("/search", isAdmin, (req, res) => {
       if (data.length) {
         res.status(200).json(data);
       } else {
-        res.status(404).json({ message: "User not found" });
+        res.status(404).json({ message: "Branch not found" });
       }
     })
     .catch((err) => {
@@ -54,7 +102,7 @@ branchRouter.get("/:id", isAdmin, (req, res) => {
       if (data) {
         res.status(200).json(data);
       } else {
-        res.status(404).json({ message: "User not found" });
+        res.status(404).json({ message: "Branch not found" });
       }
     })
     .catch((err) => {
@@ -69,9 +117,9 @@ branchRouter.put("/:id", isAdmin, (req, res) => {
       if (data) {
         res
           .status(200)
-          .json({ message: "User updated successfully", data: data });
+          .json({ message: "Branch updated successfully", data: data });
       } else {
-        res.status(404).json({ message: "User not update", data: data });
+        res.status(404).json({ message: "Branch not update", data: data });
       }
     })
     .catch((err) => {
@@ -86,9 +134,9 @@ branchRouter.patch("/:id", isAdmin, (req, res) => {
       if (data) {
         res
           .status(200)
-          .json({ message: "User updated successfully", data: data });
+          .json({ message: "Branch updated successfully", data: data });
       } else {
-        res.status(404).json({ message: "User not update", data: data });
+        res.status(404).json({ message: "Branch not update", data: data });
       }
     })
     .catch((err) => {
@@ -103,9 +151,9 @@ branchRouter.delete("/:id", isAdmin, (req, res) => {
       if (data) {
         res
           .status(200)
-          .json({ message: "User deleted successfully", data: data });
+          .json({ message: "Branch deleted successfully", data: data });
       } else {
-        res.status(404).json({ message: "User not found", data: data });
+        res.status(404).json({ message: "Branch not found", data: data });
       }
     })
     .catch((err) => {
