@@ -22,7 +22,7 @@ const Info = sequelize.define(modelName, {
         allowNull: false
     },
     menu_qr: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.TEXT,
         allowNull: false
     }
 });
