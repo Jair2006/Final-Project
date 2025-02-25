@@ -14,23 +14,23 @@ const BranchItem = sequilize.define(modelName, {
   },
   shipping_enabled: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    allowNull: true,
   },
   delivery_enabled: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    allowNull: true,
   },
   stock_alert_count: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
-  stock_alert_eneable: {
+  stock_alert_enabled: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  selfserve_ordering_enabled: {
+  self_serve_ordering_enabled: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    allowNull: true,
   },
   enabled: {
     type: DataTypes.BOOLEAN,
@@ -38,11 +38,11 @@ const BranchItem = sequilize.define(modelName, {
   },
   pickup_enabled: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    allowNull: true,
   },
   stock: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
 });
 

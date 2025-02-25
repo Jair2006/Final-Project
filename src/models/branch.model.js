@@ -4,8 +4,12 @@ import { DataTypes } from "sequelize";
 const modelName = "Branch";
 
 const Branch = sequilize.define(modelName, {
-  opening_hours: {
+  name: {
     type: DataTypes.STRING(50),
+    allowNull: false, 
+  },
+  opening_hours: {
+    type: DataTypes.JSONB,
     allowNull: false,
   },
   address: {
@@ -18,14 +22,6 @@ const Branch = sequilize.define(modelName, {
   },
   menu_URL: {
     type: DataTypes.STRING(100),
-    allowNull: false,
-  },
-  stock_alert_eneable: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
-  stock_alert_count: {
-    type: DataTypes.INTEGER,
     allowNull: false,
   },
 });
