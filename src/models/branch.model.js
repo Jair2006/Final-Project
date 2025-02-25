@@ -6,7 +6,7 @@ const modelName = "Branch";
 const Branch = sequilize.define(modelName, {
   name: {
     type: DataTypes.STRING(50),
-    allowNull: false, 
+    allowNull: false,
   },
   opening_hours: {
     type: DataTypes.JSONB,
@@ -20,9 +20,13 @@ const Branch = sequilize.define(modelName, {
     type: DataTypes.STRING(100),
     allowNull: false,
   },
-  menu_URL: {
+  menu_url: {
     type: DataTypes.STRING(100),
-    allowNull: false,
+    allowNull: true,
+  },
+  menu_qr: {
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
 });
 
