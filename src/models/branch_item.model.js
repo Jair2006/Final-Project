@@ -14,29 +14,29 @@ const BranchItem = sequilize.define(modelName, {
   },
   shipping_enabled: {
     type: DataTypes.BOOLEAN,
-    allowNull: true,
-  },
-  delivery_enabled: {
-    type: DataTypes.BOOLEAN,
-    allowNull: true,
-  },
-  stock_alert_count: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  stock_alert_enabled: {
-    type: DataTypes.BOOLEAN,
     allowNull: false,
   },
   self_serve_ordering_enabled: {
     type: DataTypes.BOOLEAN,
-    allowNull: true,
+    allowNull: false,
   },
-  enabled: {
+  delivery_enabled: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
   pickup_enabled: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  online_sale_price: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  enabled: {
     type: DataTypes.BOOLEAN,
     allowNull: true,
   },
@@ -44,6 +44,14 @@ const BranchItem = sequilize.define(modelName, {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
+  stock_alert_enabled: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+  },
+  stock_alert_count: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  }
 });
 
 Branch.belongsToMany(Item, {

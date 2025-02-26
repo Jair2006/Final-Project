@@ -6,7 +6,7 @@ const modelName = "Contact";
 
 const Contact = sequelize.define(modelName, {
   data: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
   type: {

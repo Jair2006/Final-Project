@@ -18,7 +18,7 @@ const Info = sequelize.define(modelName, {
         allowNull: false
     },
     menu_url: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     menu_qr: {

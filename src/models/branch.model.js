@@ -16,10 +16,6 @@ const Branch = sequilize.define(modelName, {
     type: DataTypes.STRING(150),
     allowNull: false,
   },
-  contact_details: {
-    type: DataTypes.STRING(100),
-    allowNull: false,
-  },
   menu_url: {
     type: DataTypes.STRING(100),
     allowNull: true,
