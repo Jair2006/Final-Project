@@ -34,7 +34,7 @@ export const logIn = async (body) => {
       lastname: user.lastname,
       role: user.role,
     };
-    const token = jwt.sign(userInfo, SECRET_KEY, { expiresIn: "1h" });
+    const token = jwt.sign(userInfo, SECRET_KEY, { expiresIn: "24h" });
     return { token: token };
   } else {
     throw new Error("Password incorrect");
