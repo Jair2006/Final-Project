@@ -3,6 +3,7 @@ import Item from "../models/item.model.js";
 import Contact from "../models/contact.model.js";
 import BranchItem from "../models/branch_item.model.js";
 import { convertToQr } from "../utils/qr.js";
+import { Op } from "sequelize";
 
 export const getBranches = async () => {
   let data = await Branch.findAll({ include: [Contact, Item] });
@@ -32,8 +33,6 @@ export const createBranch = async (body) => {
 export const updateBranch = async (id, body) => {
   if (body.menu_url && body.menu_url !== "") {
     body.menu_qr = await convertToQr(body.menu_url);
-  } else {
-    body.menu_qr = null;
   }
   let data = await Branch.update(body, {
     where: {
@@ -41,6 +40,14 @@ export const updateBranch = async (id, body) => {
     },
   });
   console.log(data);
+  await Branch.update(
+    { menu_url: null, menu_qr: null },
+    {
+      where: {
+        [Op.or]: [{ menu_url: null }, { menu_url: "" }],
+      },
+    }
+  );
   return data;
 };
 
