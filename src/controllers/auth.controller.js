@@ -40,3 +40,15 @@ export const logIn = async (body) => {
     throw new Error("Password incorrect");
   }
 };
+
+export const updatePassword = async (id, body) => {
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(body.password, saltRounds);
+  let payload = {
+    password: hashedPassword,
+  };
+  let data = await User.update(payload, {
+    where: { id: id },
+  });
+  return data;
+};

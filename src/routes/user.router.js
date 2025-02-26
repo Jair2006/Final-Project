@@ -11,17 +11,6 @@ import { isAdmin } from "../middlewares/auth.js";
 
 const userRouter = express.Router();
 
-userRouter.post("/", isAdmin, (req, res) => {
-  createUser(req.body)
-    .then((data) => {
-      res.status(201).json(data);
-    })
-    .catch((err) => {
-      console.error("Error on POST / route:", err);
-      res.status(500).json({ message: err });
-    });
-});
-
 userRouter.get("/", isAdmin, (req, res) => {
   getUsers()
     .then((data) => {
