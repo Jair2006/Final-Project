@@ -112,6 +112,10 @@ const Item = Sequilize.define(modelName, {
     option_value_1: {
         type: DataTypes.STRING,
         allowNull: true,
+    },
+    sku : {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 });
 
