@@ -1,7 +1,7 @@
 import {
   getItemById,
   getItems,
-  getItemsBySearch,
+  // getItemsBySearch,
   createItem,
   updateItem,
   deleteItem,
@@ -11,20 +11,20 @@ import { isAdmin } from "../middlewares/auth.js";
 
 const itemRouter = express.Router();
 
-itemRouter.get("/search", (req, res) => {
-  getItemsBySearch(req.query)
-    .then((data) => {
-      if (data.length) {
-        res.status(200).json(data);
-      } else {
-        res.status(404).json({ message: "Item not found." });
-      }
-    })
-    .catch((err) => {
-      console.error("Error on GET /search route:", err);
-      res.status(500).json({ message: err });
-    });
-});
+//itemRouter.get("/search", (req, res) => {
+// getItemsBySearch(req.query)
+//   .then((data) => {
+//      if (data.length) {
+//      res.status(200).json(data);
+//   } else {
+//      res.status(404).json({ message: "Item not found." });
+//   }
+// })
+// .catch((err) => {
+//   console.error("Error on GET /search route:", err);
+//   res.status(500).json({ message: err });
+// });
+//});
 
 itemRouter.get("/:id", (req, res) => {
   getItemById(req.params.id)

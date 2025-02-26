@@ -8,7 +8,7 @@ import {
   deleteContact,
   deleteItem,
   getBranchById,
-  getBranchBySearch,
+  // getBranchBySearch,
   getBranches,
   updateBranch,
   updateContact,
@@ -129,20 +129,20 @@ branchRouter.get("/", (req, res) => {
     });
 });
 
-branchRouter.get("/search", (req, res) => {
-  getBranchBySearch(req.query)
-    .then((data) => {
-      if (data.length) {
-        res.status(200).json(data);
-      } else {
-        res.status(404).json({ message: "Branch not found" });
-      }
-    })
-    .catch((err) => {
-      console.error("Error on GET /search route:", err);
-      res.status(500).json({ message: err });
-    });
-});
+//branchRouter.get("/search", (req, res) => {
+//getBranchBySearch(req.query)
+//.then((data) => {
+//if (data.length) {
+//res.status(200).json(data);
+//      } else {
+//      res.status(404).json({ message: "Branch not found" });
+//  }
+// })
+//.catch((err) => {
+//  console.error("Error on GET /search route:", err);
+// res.status(500).json({ message: err });
+//});
+//});
 
 branchRouter.get("/:id", (req, res) => {
   getBranchById(req.params.id)
