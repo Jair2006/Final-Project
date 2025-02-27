@@ -15,10 +15,10 @@ export const getBranchById = async (id) => {
   return data;
 };
 
-export const getBranchBySearch = async () => {
-  let data = await Branch.findAll({ include: [Contact, Item] });
-  return data;
-};
+//export const getBranchBySearch = async () => {
+  //let data = await Branch.findAll({ include: [Contact, Item] });
+  //return data;
+//};
 
 export const createBranch = async (body) => {
   if (body.menu_url && body.menu_url !== "") {
